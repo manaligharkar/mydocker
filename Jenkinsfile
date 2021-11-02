@@ -4,20 +4,20 @@ pipeline {
         
         stage('Build Docker Image') {
             when {
-                branch 'master'
+                branch 'main'
             }
             steps {
                 script {
-                    app = docker.build("<DOCKER_HUB_USERNAME>/train-schedule")
+                    app = docker.build("manalighar/myprojectDocker")
                     app.inside {
-                        sh 'echo $(curl localhost:8080)'
+                        sh 'echo $(curl localhost:80)'
                     }
                 }
             }
         }
         stage('Push Docker Image') {
             when {
-                branch 'master'
+                branch 'main'
             }
             steps {
                 script {
