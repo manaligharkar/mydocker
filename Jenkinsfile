@@ -3,9 +3,7 @@ pipeline {
     stages {
         
         stage('Build Docker Image') {
-            when {
-                branch 'main'
-            }
+           
             steps {
                 script {
                     app = docker.build("manalighar/myprojectDocker")
@@ -16,9 +14,7 @@ pipeline {
             }
         }
         stage('Push Docker Image') {
-            when {
-                branch 'main'
-            }
+           
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
